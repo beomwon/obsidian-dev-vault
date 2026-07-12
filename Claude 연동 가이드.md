@@ -32,6 +32,15 @@ created: 2026-07-12
 
   > 옵시디언/노트 정리 요청이 오면 Vault는 `c:\Users\user\Desktop\이범원\옵시디언`, 규칙은 그 폴더의 CLAUDE.md를 따를 것.
 
+**옵시디언 문법 스킬** — 옵시디언을 만든 kepano의 [obsidian-skills](https://github.com/kepano/obsidian-skills) 중 obsidian-markdown, obsidian-bases, json-canvas가 `.claude/skills/`에 포함되어 있어 별도 설치 없이 동작한다. 나머지 둘이 필요하면 마켓플레이스로 설치:
+
+- `obsidian-cli` — 플러그인/테마 개발용
+- `defuddle` — 웹페이지를 마크다운으로 클리핑
+
+```
+/plugin marketplace add kepano/obsidian-skills
+```
+
 ## 2. 클로드 데스크탑
 
 채팅 앱이라 기본적으로 로컬 파일을 못 본다. MCP 서버를 붙여서 해결한다.

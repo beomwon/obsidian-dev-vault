@@ -28,6 +28,14 @@
 - **"인박스 정리해줘"** → `00_Inbox/`의 노트를 내용을 보고 적절한 폴더로 옮기고 frontmatter를 보강한다. 어디로 보낼지 애매한 노트는 옮기지 말고 목록으로 보고.
 - **"프로젝트 노트 만들어줘"** → `20_Projects/`에 Project 템플릿으로. 이후 진행 상황 업데이트 요청은 그 노트의 "로그" 섹션에 날짜 소제목으로 추가한다 (기존 로그는 수정하지 않음).
 
+## 옵시디언 문법
+
+`.claude/skills/`에 옵시디언 공식 Agent Skills([kepano/obsidian-skills](https://github.com/kepano/obsidian-skills), MIT) 세 개가 들어 있다. 해당 작업을 할 때는 이 스킬의 문법을 따른다.
+
+- `obsidian-markdown` — 콜아웃, 임베드, 속성(frontmatter) 등 옵시디언 확장 마크다운
+- `obsidian-bases` — `.base` 파일 (노트 테이블/필터 뷰)
+- `json-canvas` — `.canvas` 파일 (캔버스 다이어그램)
+
 ## 하지 말 것
 
 - 노트 삭제 금지. 필요하면 이동하고 보고한다.

@@ -87,6 +87,8 @@ cd obsidian-dev-vault
 
 [CLAUDE.md](CLAUDE.md)에 이 Vault의 규칙(폴더 용도, 파일명, frontmatter 형식, 자주 하는 요청의 처리 방법)이 정리되어 있습니다. Vault 폴더에서 Claude Code를 열면 "어제 삽질한 거 트러블슈팅으로 정리해줘" 같은 요청을 매번 설명 없이 시킬 수 있습니다. 안 쓰면 지워도 됩니다.
 
+옵시디언을 만든 [kepano의 Agent Skills](https://github.com/kepano/obsidian-skills) 중 셋(obsidian-markdown, obsidian-bases, json-canvas)을 `.claude/skills/`에 포함해뒀습니다(MIT). 덕분에 클론만 하면 Claude Code가 콜아웃·임베드·속성 같은 옵시디언 문법과 Bases, Canvas 파일을 바로 다룰 줄 압니다.
+
 클로드 웹이나 데스크탑 앱에서 쓰는 방법은 [Claude 연동 가이드](Claude%20연동%20가이드.md)에 정리했습니다.
 
 ## 라이선스

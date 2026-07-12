@@ -6,6 +6,9 @@
 # 플러그인 본체는 setup 스크립트가 받아온다
 .obsidian/plugins/
 
+# Claude Code 개인 설정
+.claude/settings.local.json
+
 # 휴지통
 .trash/
 
