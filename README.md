@@ -116,15 +116,10 @@ cd obsidian-dev-vault
 
 ## 버전 기록
 
-### v1.1.0 — 2026-07-12
-
-**문제** — setup 스크립트가 플러그인을 무조건 최신 릴리스로 받았습니다. 그런데 플러그인 최신 버전이 설치된 옵시디언보다 높은 버전(`minAppVersion`)을 요구하면 옵시디언이 "플러그인을 로드할 수 없다"는 팝업을 띄웁니다. 실제로 Templater 2.23.1은 옵시디언 1.13.0 이상을 요구하는데, winget으로 설치되는 정식 최신 옵시디언은 1.12.7이라 설치 직후부터 에러가 났습니다.
-
-**해결** — 설치된 옵시디언 버전을 읽어서(Windows는 exe 버전 정보, macOS는 Info.plist), 각 플러그인의 릴리스를 최신부터 훑으며 `minAppVersion`이 맞는 첫 릴리스를 골라 받도록 바꿨습니다. 프리릴리스 표시 없이 올라온 베타 태그(예: Calendar `2.0.0-beta.2`)도 거릅니다.
-
-### v1.0.0 — 2026-07-12
-
-첫 공개. 폴더 구조, 노트 템플릿 4종, 플러그인 자동 설치 스크립트(Windows·macOS), CLAUDE.md, kepano Agent Skills 3종 포함.
+| 버전 | 날짜 | 문제 | 해결 |
+| --- | --- | --- | --- |
+| [v1.1.0](https://github.com/beomwon/obsidian-dev-vault/releases/tag/v1.1.0) | 2026-07-12 | setup 스크립트가 플러그인을 무조건 최신 릴리스로 받아서, 플러그인이 설치된 옵시디언보다 높은 버전(`minAppVersion`)을 요구하면 "로드할 수 없음" 팝업이 뜸 (예: Templater 2.23.1은 옵시디언 1.13+ 요구, winget 정식 최신은 1.12.7) | 설치된 옵시디언 버전을 읽어 호환되는 릴리스를 골라 받도록 변경. 프리릴리스 표시 없는 베타 태그(예: Calendar `2.0.0-beta.2`)도 제외 |
+| [v1.0.0](https://github.com/beomwon/obsidian-dev-vault/releases/tag/v1.0.0) | 2026-07-12 | — | 첫 공개. 폴더 구조, 노트 템플릿 4종, 자동 설치 스크립트(Windows·macOS), CLAUDE.md, kepano Agent Skills 3종 |
 
 ## 라이선스
 
