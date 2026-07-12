@@ -1,6 +1,25 @@
-# obsidian-dev-vault
+<div align="center">
 
-개발 노트용 옵시디언 Vault 템플릿입니다.
+<img src=".github/banner.png" alt="obsidian-dev-vault" width="680">
+
+<br><br>
+
+**개발 노트용 옵시디언 Vault 템플릿 — 클론해서 열면 끝**
+
+[![License](https://img.shields.io/github/license/beomwon/obsidian-dev-vault?color=8b5cf6)](LICENSE)
+[![Obsidian](https://img.shields.io/badge/Obsidian-purple?logo=obsidian&logoColor=white&color=7c3aed)](https://obsidian.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-a78bfa.svg)](https://github.com/beomwon/obsidian-dev-vault/pulls)
+[![Stars](https://img.shields.io/github/stars/beomwon/obsidian-dev-vault?style=social)](https://github.com/beomwon/obsidian-dev-vault/stargazers)
+
+[시작하기](#시작하기) ·
+[구조](#구조) ·
+[템플릿](#템플릿) ·
+[플러그인](#플러그인) ·
+[Claude와 쓰기](#claude-code와-같이-쓰기)
+
+</div>
+
+---
 
 옵시디언은 처음 켜면 빈 폴더 하나가 전부입니다. 폴더 구조는 어떻게 잡을지, 데일리 노트는 어디에 쌓을지, 플러그인은 뭘 깔아야 할지 이런 걸 검색하다 보면 정작 노트는 한 줄도 못 쓰고 하루가 갑니다. 그래서 그 결정들을 미리 해둔 저장소를 만들었습니다. 클론해서 열면 바로 쓸 수 있고, 쓰다가 마음에 안 드는 부분은 고치면 됩니다.
 
@@ -65,8 +84,8 @@ cd obsidian-dev-vault
 
 `Ctrl+P` → **Insert template**으로 불러옵니다.
 
-| 템플릿          | 용도                                                                             |
-| --------------- | -------------------------------------------------------------------------------- |
+| 템플릿 | 용도 |
+| --- | --- |
 | [Daily](90_Templates/Daily.md) | 데일리 노트. 할 일, 메모, 오늘 배운 것 |
 | [TIL](90_Templates/TIL.md) | 배운 것 + 어떤 맥락에서 알게 됐는지 |
 | [Troubleshooting](90_Templates/Troubleshooting.md) | 증상 / 원인 / 해결 / 재발 방지. 에러 메시지는 원문 그대로 넣어서 나중에 검색되게 |
@@ -74,12 +93,12 @@ cd obsidian-dev-vault
 
 ## 플러그인
 
-| 플러그인                                                         | 왜 넣었나                                                      |
-| ---------------------------------------------------------------- | -------------------------------------------------------------- |
-| [Dataview](https://github.com/blacksmithgu/obsidian-dataview)    | 노트를 쿼리해서 목록으로. Home의 자동 집계가 이걸로 동작합니다 |
-| [Calendar](https://github.com/liamcain/obsidian-calendar-plugin) | 사이드바 달력. 날짜를 클릭하면 그날 데일리 노트로 이동         |
-| [Templater](https://github.com/SilentVoid13/Templater)           | 코어 템플릿보다 유연한 템플릿. 당장은 몰라도 됩니다            |
-| [Obsidian Git](https://github.com/Vinzent03/obsidian-git)        | Vault를 깃으로 자동 백업                                       |
+| 플러그인 | 왜 넣었나 |
+| --- | --- |
+| [Dataview](https://github.com/blacksmithgu/obsidian-dataview) | 노트를 쿼리해서 목록으로. Home의 자동 집계가 이걸로 동작합니다 |
+| [Calendar](https://github.com/liamcain/obsidian-calendar-plugin) | 사이드바 달력. 날짜를 클릭하면 그날 데일리 노트로 이동 |
+| [Templater](https://github.com/SilentVoid13/Templater) | 코어 템플릿보다 유연한 템플릿. 당장은 몰라도 됩니다 |
+| [Obsidian Git](https://github.com/Vinzent03/obsidian-git) | Vault를 깃으로 자동 백업 |
 
 플러그인 본체는 저장소에 포함하지 않습니다. setup 스크립트가 각 플러그인의 최신 릴리스를 받아옵니다.
 
@@ -91,6 +110,12 @@ cd obsidian-dev-vault
 
 클로드 웹이나 데스크탑 앱에서 쓰는 방법은 [Claude 연동 가이드](Claude%20연동%20가이드.md)에 정리했습니다.
 
+## 기여
+
+오타 수정부터 템플릿 제안까지 뭐든 환영합니다. [이슈](https://github.com/beomwon/obsidian-dev-vault/issues)로 먼저 얘기해 주셔도 되고, 바로 PR을 보내셔도 됩니다.
+
+이 템플릿이 세팅 시간을 아껴줬다면 ⭐ 하나 눌러주세요. 다음 사람이 이 저장소를 찾는 데 큰 도움이 됩니다.
+
 ## 라이선스
 
-MIT
+[MIT](LICENSE) — 마음껏 가져다 쓰세요.
