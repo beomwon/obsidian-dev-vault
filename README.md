@@ -2,7 +2,7 @@
 
 개발 노트용 옵시디언 Vault 템플릿입니다.
 
-옵시디언은 처음 켜면 빈 폴더 하나가 전부입니다. 폴더 구조는 어떻게 잡을지, 데일리 노트는 어디에 쌓을지, 플러그인은 뭘 깔아야 할지 — 이런 걸 검색하다 보면 정작 노트는 한 줄도 못 쓰고 하루가 갑니다. 그래서 그 결정들을 미리 해둔 저장소를 만들었습니다. 클론해서 열면 바로 쓸 수 있고, 쓰다가 마음에 안 드는 부분은 고치면 됩니다.
+옵시디언은 처음 켜면 빈 폴더 하나가 전부입니다. 폴더 구조는 어떻게 잡을지, 데일리 노트는 어디에 쌓을지, 플러그인은 뭘 깔아야 할지 이런 걸 검색하다 보면 정작 노트는 한 줄도 못 쓰고 하루가 갑니다. 그래서 그 결정들을 미리 해둔 저장소를 만들었습니다. 클론해서 열면 바로 쓸 수 있고, 쓰다가 마음에 안 드는 부분은 고치면 됩니다.
 
 ## 시작하기
 
@@ -53,33 +53,41 @@ cd obsidian-dev-vault
 
 숫자 접두어는 정렬용입니다. 자주 쓰는 폴더가 위로 오고, 나중에 사이에 새 폴더를 끼워 넣기도 쉽습니다.
 
-`Home.md`가 시작점입니다. 최근 수정한 노트, 진행 중인 프로젝트, 아직 못 푼 문제가 Dataview로 자동 집계됩니다.
+## 들어있는 노트
+
+| 파일 | 내용 |
+| --- | --- |
+| [Home](Home.md) | 시작 노트. Vault 사용법 안내와 함께 최근 수정한 노트, 진행 중인 프로젝트, 아직 못 푼 문제가 Dataview로 자동 집계됩니다 |
+| [Claude 연동 가이드](Claude%20연동%20가이드.md) | 클로드 웹 / 데스크탑 / VSCode 확장 각각에서 이 Vault를 쓰는 방법. 데스크탑용 MCP 설정 예시 포함 |
+| [CLAUDE.md](CLAUDE.md) | Claude Code용 Vault 규칙. 폴더 용도, 파일명·frontmatter 형식, 자주 하는 요청("TIL로 정리해줘" 등)의 처리 방법 |
 
 ## 템플릿
 
 `Ctrl+P` → **Insert template**으로 불러옵니다.
 
-| 템플릿 | 용도 |
-|---|---|
-| Daily | 데일리 노트. 할 일, 메모, 오늘 배운 것 |
-| TIL | 배운 것 + 어떤 맥락에서 알게 됐는지 |
-| Troubleshooting | 증상 / 원인 / 해결 / 재발 방지. 에러 메시지는 원문 그대로 넣어서 나중에 검색되게 |
-| Project | 개요, 링크, 할 일, 날짜별 로그 |
+| 템플릿          | 용도                                                                             |
+| --------------- | -------------------------------------------------------------------------------- |
+| [Daily](90_Templates/Daily.md) | 데일리 노트. 할 일, 메모, 오늘 배운 것 |
+| [TIL](90_Templates/TIL.md) | 배운 것 + 어떤 맥락에서 알게 됐는지 |
+| [Troubleshooting](90_Templates/Troubleshooting.md) | 증상 / 원인 / 해결 / 재발 방지. 에러 메시지는 원문 그대로 넣어서 나중에 검색되게 |
+| [Project](90_Templates/Project.md) | 개요, 링크, 할 일, 날짜별 로그 |
 
 ## 플러그인
 
-| 플러그인 | 왜 넣었나 |
-|---|---|
-| [Dataview](https://github.com/blacksmithgu/obsidian-dataview) | 노트를 쿼리해서 목록으로. Home의 자동 집계가 이걸로 동작합니다 |
-| [Calendar](https://github.com/liamcain/obsidian-calendar-plugin) | 사이드바 달력. 날짜를 클릭하면 그날 데일리 노트로 이동 |
-| [Templater](https://github.com/SilentVoid13/Templater) | 코어 템플릿보다 유연한 템플릿. 당장은 몰라도 됩니다 |
-| [Obsidian Git](https://github.com/Vinzent03/obsidian-git) | Vault를 깃으로 자동 백업 |
+| 플러그인                                                         | 왜 넣었나                                                      |
+| ---------------------------------------------------------------- | -------------------------------------------------------------- |
+| [Dataview](https://github.com/blacksmithgu/obsidian-dataview)    | 노트를 쿼리해서 목록으로. Home의 자동 집계가 이걸로 동작합니다 |
+| [Calendar](https://github.com/liamcain/obsidian-calendar-plugin) | 사이드바 달력. 날짜를 클릭하면 그날 데일리 노트로 이동         |
+| [Templater](https://github.com/SilentVoid13/Templater)           | 코어 템플릿보다 유연한 템플릿. 당장은 몰라도 됩니다            |
+| [Obsidian Git](https://github.com/Vinzent03/obsidian-git)        | Vault를 깃으로 자동 백업                                       |
 
 플러그인 본체는 저장소에 포함하지 않습니다. setup 스크립트가 각 플러그인의 최신 릴리스를 받아옵니다.
 
 ## Claude Code와 같이 쓰기
 
 [CLAUDE.md](CLAUDE.md)에 이 Vault의 규칙(폴더 용도, 파일명, frontmatter 형식, 자주 하는 요청의 처리 방법)이 정리되어 있습니다. Vault 폴더에서 Claude Code를 열면 "어제 삽질한 거 트러블슈팅으로 정리해줘" 같은 요청을 매번 설명 없이 시킬 수 있습니다. 안 쓰면 지워도 됩니다.
+
+클로드 웹이나 데스크탑 앱에서 쓰는 방법은 [Claude 연동 가이드](Claude%20연동%20가이드.md)에 정리했습니다.
 
 ## 라이선스
 

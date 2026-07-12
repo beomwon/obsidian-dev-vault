@@ -13,6 +13,7 @@ tags:
 2. 하루의 시작은 `Ctrl+P` → "Open today's daily note".
 3. 새로 배운 건 `30_TIL`에, 삽질 기록은 `40_Troubleshooting`에. `Ctrl+P` → "Insert template"로 양식을 불러올 수 있습니다.
 4. 노트끼리는 `[[노트 이름]]`으로 연결합니다. 연결이 쌓이면 그래프 뷰(`Ctrl+G`)가 재밌어집니다.
+5. Claude와 같이 쓰는 방법은 [[Claude 연동 가이드]] 참고.
 
 ## 최근에 만진 노트
 
