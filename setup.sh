@@ -24,6 +24,46 @@ else
 fi
 
 # 2. 커뮤니티 플러그인 다운로드
+#    무조건 최신 릴리스를 받으면 안 된다. 플러그인 최신 버전이
+#    설치된 옵시디언보다 높은 버전(minAppVersion)을 요구하면
+#    "로드할 수 없음" 팝업이 뜨기 때문에, 릴리스를 최신부터 훑으며
+#    설치된 옵시디언과 호환되는 첫 릴리스를 골라 받는다.
+OBS_VERSION=""
+if [ -d "/Applications/Obsidian.app" ]; then
+    OBS_VERSION=$(defaults read /Applications/Obsidian.app/Contents/Info CFBundleShortVersionString 2>/dev/null || true)
+fi
+if [ -n "$OBS_VERSION" ]; then
+    step "옵시디언 버전: $OBS_VERSION"
+fi
+
+compatible_tag() {
+    python3 - "$1" "$OBS_VERSION" <<'PY'
+import json, sys, urllib.request
+
+repo, obs = sys.argv[1], sys.argv[2]
+
+def ver(s):
+    return tuple(int(x) for x in s.split(".") if x.isdigit())
+
+url = f"https://api.github.com/repos/{repo}/releases?per_page=20"
+releases = json.load(urllib.request.urlopen(url))
+for r in releases:
+    if r.get("draft") or r.get("prerelease"):
+        continue
+    # 프리릴리스 표시 없이 올라온 베타도 거른다 (예: 2.0.0-beta.2)
+    if "-" in r["tag_name"]:
+        continue
+    assets = {a["name"]: a["browser_download_url"] for a in r["assets"]}
+    if "manifest.json" not in assets:
+        continue
+    manifest = json.load(urllib.request.urlopen(assets["manifest.json"]))
+    m = manifest.get("minAppVersion")
+    if not obs or not m or ver(m) <= ver(obs):
+        print(r["tag_name"])
+        break
+PY
+}
+
 plugins=(
     "dataview blacksmithgu/obsidian-dataview"
     "templater-obsidian SilentVoid13/Templater"
@@ -34,11 +74,16 @@ plugins=(
 for entry in "${plugins[@]}"; do
     id="${entry%% *}"
     repo="${entry##* }"
+    tag=$(compatible_tag "$repo")
+    if [ -z "$tag" ]; then
+        echo "경고: $id 호환 릴리스를 찾지 못해 건너뜁니다." >&2
+        continue
+    fi
     dir="$VAULT_DIR/.obsidian/plugins/$id"
     mkdir -p "$dir"
-    step "플러그인 다운로드: $id"
+    step "플러그인 다운로드: $id $tag"
     for file in main.js manifest.json styles.css; do
-        url="https://github.com/$repo/releases/latest/download/$file"
+        url="https://github.com/$repo/releases/download/$tag/$file"
         if ! curl -fsSL "$url" -o "$dir/$file"; then
             # styles.css는 없는 플러그인도 있다
             if [ "$file" != "styles.css" ]; then

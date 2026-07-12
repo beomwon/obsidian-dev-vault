@@ -63,8 +63,39 @@ if ($obsidianExe) {
 
 # ---------------------------------------------------------------
 # 3. 커뮤니티 플러그인 다운로드
-#    각 플러그인 저장소의 최신 릴리스에서 받아온다.
+#    무조건 최신 릴리스를 받으면 안 된다. 플러그인 최신 버전이
+#    설치된 옵시디언보다 높은 버전(minAppVersion)을 요구하면
+#    "로드할 수 없음" 팝업이 뜨기 때문에, 릴리스를 최신부터 훑으며
+#    설치된 옵시디언과 호환되는 첫 릴리스를 골라 받는다.
 # ---------------------------------------------------------------
+function Get-ObsidianVersion($exe) {
+    if (-not $exe) { return $null }
+    $v = (Get-Item $exe).VersionInfo.ProductVersion
+    if ($v -match '^\d+\.\d+\.\d+') { return $Matches[0] }
+    return $null
+}
+
+function Get-CompatibleRelease($repo, $obsVersion) {
+    $releases = Invoke-RestMethod "https://api.github.com/repos/$repo/releases?per_page=20" -UseBasicParsing
+    foreach ($r in $releases) {
+        if ($r.draft -or $r.prerelease) { continue }
+        # 프리릴리스 표시 없이 올라온 베타도 거른다 (예: 2.0.0-beta.2)
+        if ($r.tag_name -match "-") { continue }
+        $manifestAsset = $r.assets | Where-Object name -eq "manifest.json"
+        if (-not $manifestAsset) { continue }
+        try { $manifest = Invoke-RestMethod $manifestAsset.browser_download_url -UseBasicParsing } catch { continue }
+        $min = $manifest.minAppVersion
+        # 옵시디언 버전을 모르거나 플러그인이 요구 버전을 안 적었으면 그냥 통과
+        if (-not $obsVersion -or -not $min -or ([version]$min -le [version]$obsVersion)) {
+            return $r
+        }
+    }
+    return $null
+}
+
+$obsVersion = Get-ObsidianVersion $obsidianExe
+if ($obsVersion) { Write-Step "옵시디언 버전: $obsVersion" }
+
 $plugins = @(
     @{ Id = "dataview";           Repo = "blacksmithgu/obsidian-dataview" },
     @{ Id = "templater-obsidian"; Repo = "SilentVoid13/Templater" },
@@ -73,17 +104,22 @@ $plugins = @(
 )
 
 foreach ($p in $plugins) {
-    Write-Step "플러그인 다운로드: $($p.Id)"
+    $release = Get-CompatibleRelease $p.Repo $obsVersion
+    if (-not $release) {
+        Write-Host "경고: $($p.Id) 호환 릴리스를 찾지 못해 건너뜁니다." -ForegroundColor Yellow
+        continue
+    }
+    Write-Step "플러그인 다운로드: $($p.Id) $($release.tag_name)"
     $dir = Join-Path $VaultPath ".obsidian\plugins\$($p.Id)"
     New-Item -ItemType Directory -Force $dir | Out-Null
     foreach ($file in "main.js", "manifest.json", "styles.css") {
-        $url = "https://github.com/$($p.Repo)/releases/latest/download/$file"
-        try {
-            Invoke-WebRequest $url -OutFile (Join-Path $dir $file) -UseBasicParsing
-        } catch {
+        $asset = $release.assets | Where-Object name -eq $file
+        if (-not $asset) {
             # styles.css는 없는 플러그인도 있다
-            if ($file -ne "styles.css") { throw "다운로드 실패: $url" }
+            if ($file -ne "styles.css") { throw "릴리스에 $file 이 없습니다: $($p.Repo) $($release.tag_name)" }
+            continue
         }
+        Invoke-WebRequest $asset.browser_download_url -OutFile (Join-Path $dir $file) -UseBasicParsing
     }
 }
 
