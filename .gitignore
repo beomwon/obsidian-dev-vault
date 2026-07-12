@@ -1,0 +1,14 @@
+# 옵시디언 개인 상태 파일 (창 배치, 최근 파일 등)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/appearance.json
+
+# 플러그인 본체는 setup 스크립트가 받아온다
+.obsidian/plugins/
+
+# 휴지통
+.trash/
+
+# OS
+.DS_Store
+Thumbs.db
